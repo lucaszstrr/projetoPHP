@@ -18,6 +18,7 @@
 
     }
 
+    //Função de cadastro
     function cadastro(){
 
         $novoUsuario = readline("Digite o novo usuário: ");
@@ -30,6 +31,15 @@
         echo "Usuário cadastrado";
     }
 
+    function venda(){
+
+        $produto = readline("Qual o produto ? ".PHP_EOL);
+        $valor = readline("Qual o valor ? R$" .PHP_EOL);
+        //Colocando no log 
+        logAlteracoes("$produto foi vendido no valor de R$$valor");
+        return $valor;
+
+    }
 
     //Código
     while(true){
