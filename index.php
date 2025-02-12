@@ -41,15 +41,31 @@
 
     }
 
+    
+    
     //Código
+
+    $usuarioLogado = false;
+
     while(true){
+        if($usuarioLogado === false){
+
+            $escolha = (int)readline();
+            echo "[1] - Logar [2] - Sair" .PHP_EOL;
+            echo "Escolha uma opção: " .PHP_EOL;
+
+            if($escolha === 1){
+                $usuarioLogado = login();
+            }elseif($escolha === 2){
+                echo "Você escolheu sair!" .PHP_EOL;
+                break;
+            }else{
+                echo "Você precisa escolher entre 1 ou 2" .PHP_EOL;                
+            }
+
+        }else{
 
 
 
-
-
-
-
-
-
+        }
     }
