@@ -24,29 +24,29 @@
         $novoUsuario = readline("Digite o novo usuário: ");
         $novaSenha = readline("Digite a nova senha: ");
         //Essa função abaixo é usada pra colocar strings em um arquivo
-        //(nome do arquivo; o que será escrito no arquivo)
+        //file_put_contents(nome do arquivo; o que será escrito no arquivo, FILE_APPEND)
         //o FILE_APPEND é para não sobrescrever o arquivo, ele vai escrever no arquivo já existente
-        file_put_contents('usuarios.txt', '$novoUsuario:$novaSenha', FILE_APPEND);
-        logAlteracoes("O usuário $novoUsuario foi cadastrado \n");
+        file_put_contents('usuarios.txt', '$novoUsuario:$novaSenha \n', FILE_APPEND);
+        logAlteracoes("O usuário $novoUsuario foi cadastrado\n");
         echo "Usuário cadastrado" .PHP_EOL;
     }
 
-    function venda(){
+    function venda($mensagem){
 
         $produto = readline("Qual o produto ? ".PHP_EOL);
         $valor = readline("Qual o valor ? R$" .PHP_EOL);
         //Colocando no log 
-        file_put_contents('log.txt', "$produto foi vendido no valor de R$$valor \n", FILE_APPEND);
+        file_put_contents('log.txt', $mensagem, FILE_APPEND);
         logAlteracoes("$produto foi vendido no valor de R$$valor \n");
         return $valor;
         return $produto;
 
     }
 
-    function logAlteracoes(){
+    function logAlteracoes($mensagem){
 
         $data = date('[d/m/Y H:i:s]');
-        file_put_contents('log.txt', $data,  FILE_APPEND);
+        file_put_contents('log.txt', $mensagem,  FILE_APPEND);
 
     }
 
@@ -95,7 +95,7 @@
             $escolha = (int)readline();
 
             if($escolha === 1){
-                $usuarioLogado = venda();
+                $usuarioLogado = venda($mensagem);
             }elseif($escolha === 2){
                 $usuarioLogado = cadastro();
             }elseif($escolha === 3){
