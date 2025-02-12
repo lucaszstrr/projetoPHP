@@ -42,17 +42,17 @@
     }
 
     
-    
+
     //Código
 
     $usuarioLogado = false;
 
     while(true){
         if($usuarioLogado === false){
-
-            $escolha = (int)readline();
+  
             echo "[1] - Logar [2] - Sair" .PHP_EOL;
             echo "Escolha uma opção: " .PHP_EOL;
+            $escolha = (int)readline();
 
             if($escolha === 1){
                 $usuarioLogado = login();
