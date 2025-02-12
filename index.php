@@ -38,21 +38,31 @@
         //Colocando no log 
         logAlteracoes("$produto foi vendido no valor de R$$valor");
         return $valor;
+        return $produto;
 
     }
 
     function logAlteracoes(){
 
-        if(file_exists('log.txt')){
-            //O file_get_contents é uma função para pegar as strings de um arquivo, contrario do file_put_contents
-            file_get_contents('log.txt', false);
-        }else{
-            echo "O arquivo de log não foi encontrado".PHP_EOL;
-        }
+        $data = date('[d/m/Y H:i:s]');
+
+        file_put_contents('log.txt', 'testando');
+//      echo "$data" .PHP_EOL;
 
     }
 
-    
+    function verLog(){
+
+        if(file_exists('log.txt')){
+            //O file_get_contents é uma função para pegar as strings de um arquivo, contrario do file_put_contents
+            $pegar = file_get_contents('log.txt');
+            echo $pegar .PHP_EOL;
+        }else{
+            echo "O arquivo de log não foi encontrado".PHP_EOL;
+        }
+        
+
+    }
 
     //Código
 
@@ -73,19 +83,45 @@
             }else{
                 echo "Você precisa escolher entre 1 ou 2" .PHP_EOL;                
             }
+            $usuarioLogado = true;
 
         }else{
             
-
             echo "O que você quer fazer ?
             [1] - Vender
             [2] - Cadastrar
             [3] - Log
             [4] - Deslogar" .PHP_EOL;
-            $escolha = readline();
+            $escolha = (int)readline();
 
-            
+            if($escolha === 1){
+                $usuarioLogado = venda();
+            }elseif($escolha === 2){
+                $usuarioLogado = cadastro();
+            }elseif($escolha === 3){
+                $usuarioLogado = verLog();
+            }elseif($escolha === 4){
+                echo "Saindo......." .PHP_EOL;
+                echo "O que você quer fazer agora ?" .PHP_EOL;
+                echo "[1] - Logar [2] - Sair" .PHP_EOL;
+                echo "Escolha uma opção: " .PHP_EOL;
+                $escolha = (int)readline();
 
-            
+                if($escolha === 1){
+                    $usuarioLogado = login();
+                }elseif($escolha === 2){
+                    echo "Você escolheu sair!" .PHP_EOL;
+                    break;
+                }else{
+                echo "Você precisa escolher entre 1 ou 2" .PHP_EOL;                
+                }
+            }else{
+                echo "Você precisa escolher entre 1 a 4" .PHP_EOL;
+            }
+
+            $usuarioLogado = true;
+
         }
+     
     }
+    
