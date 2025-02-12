@@ -8,8 +8,8 @@
         echo "Senha: " .PHP_EOL;
         $senha = readline();
 
-        if($usuario === 'lucas' && $senha === '123'){
-            logAlteracoes("O usuário $usuario entrou.");
+        if($usuario === 'Lucas' && $senha === '123'){
+            logAlteracoes("O usuário $usuario entrou \n");
             return $usuario;
         }
 
@@ -26,9 +26,9 @@
         //Essa função abaixo é usada pra colocar strings em um arquivo
         //(nome do arquivo; o que será escrito no arquivo)
         //o FILE_APPEND é para não sobrescrever o arquivo, ele vai escrever no arquivo já existente
-        file_put_contents('usuarios.txt', '$novoUsuario:$novaSenha <br>', FILE_APPEND);
-        logAlteracoes("O usuário $novoUsuario foi cadastrado.");
-        echo "Usuário cadastrado";
+        file_put_contents('usuarios.txt', '$novoUsuario:$novaSenha', FILE_APPEND);
+        logAlteracoes("O usuário $novoUsuario foi cadastrado \n");
+        echo "Usuário cadastrado" .PHP_EOL;
     }
 
     function venda(){
@@ -36,7 +36,8 @@
         $produto = readline("Qual o produto ? ".PHP_EOL);
         $valor = readline("Qual o valor ? R$" .PHP_EOL);
         //Colocando no log 
-        logAlteracoes("$produto foi vendido no valor de R$$valor");
+        file_put_contents('log.txt', "$produto foi vendido no valor de R$$valor \n", FILE_APPEND);
+        logAlteracoes("$produto foi vendido no valor de R$$valor \n");
         return $valor;
         return $produto;
 
@@ -45,9 +46,7 @@
     function logAlteracoes(){
 
         $data = date('[d/m/Y H:i:s]');
-
-        file_put_contents('log.txt', 'testando');
-//      echo "$data" .PHP_EOL;
+        file_put_contents('log.txt', $data,  FILE_APPEND);
 
     }
 
@@ -66,6 +65,7 @@
 
     //Código
 
+    $mensagem = null;
     $usuarioLogado = false;
 
     while(true){
