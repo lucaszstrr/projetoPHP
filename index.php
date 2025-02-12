@@ -41,6 +41,17 @@
 
     }
 
+    function logAlteracoes(){
+
+        if(file_exists('log.txt')){
+            //O file_get_contents é uma função para pegar as strings de um arquivo, contrario do file_put_contents
+            file_get_contents('log.txt', false);
+        }else{
+            echo "O arquivo de log não foi encontrado".PHP_EOL;
+        }
+
+    }
+
     
 
     //Código
@@ -64,8 +75,17 @@
             }
 
         }else{
+            
 
+            echo "O que você quer fazer ?
+            [1] - Vender
+            [2] - Cadastrar
+            [3] - Log
+            [4] - Deslogar" .PHP_EOL;
+            $escolha = readline();
 
+            
 
+            
         }
     }
