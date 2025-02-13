@@ -1,24 +1,27 @@
 <?php 
 
+    //Para o horário ficar certo
     date_default_timezone_set("America/Sao_Paulo");
 
     //Função de login
     function login(){
 
+        
         global $usuario;
+
+       
 
         echo "Usuário: " .PHP_EOL;
         $usuario = readline();
         echo "Senha: " .PHP_EOL;
         $senha = readline();
 
-        if($usuario === 'Lucas' && $senha === '123'){
+        if($usuario === 'Lucas' && $senha === '123'){   
             logAlteracoes("O usuário $usuario entrou \n");
+
             return $usuario;
         }
 
-        echo "O usuário ou a senha estão incorretos" .PHP_EOL;
-        login();
         
     }
 
@@ -42,9 +45,30 @@
         //Essa função abaixo é usada pra colocar strings em um arquivo
         //file_put_contents(nome do arquivo; o que será escrito no arquivo, FILE_APPEND)
         //o FILE_APPEND é para não sobrescrever o arquivo, ele vai escrever no arquivo já existente
-        file_put_contents('usuarios.txt', "$novoUsuario:$novaSenha \n", FILE_APPEND);
         logAlteracoes("O usuário $novoUsuario foi cadastrado \n");
         echo "Usuário cadastrado" .PHP_EOL;
+
+    }
+
+    function login2(){
+
+        global $novoUsuario;
+        global $novaSenha;
+        global $usuario;
+
+        $logins = ['login' => $novoUsuario, 'senha' => $novaSenha];
+
+        if($logins['login'] === $logins['senha']){
+            echo "Usuário logado" .PHP_EOL;
+            return $usuario;
+        }else{
+
+            echo "O usuário ou a senha estão incorretos" .PHP_EOL;
+            login($novoUsuario, $novaSenha);
+
+        }
+
+
     }
 
     //Função de venda
@@ -129,11 +153,14 @@
                 echo "Escolha uma opção: " .PHP_EOL;
                 $escolha = (int)readline();
 
+                global $mensagem;
+
+                file_put_contents('log.txt', "$mensagem", FILE_APPEND);
+                logAlteracoes("$usuario deslogou do sistema \n");
+
                 if($escolha === 1){
                     $usuarioLogado = login();
                 }elseif($escolha === 2){
-                    file_put_contents('log.txt', "$mensagem", FILE_APPEND);
-                    logAlteracoes("$usuario deslogou do sistema \n");
                     echo "Você escolheu sair!" .PHP_EOL;
                     break;
                 }else{
