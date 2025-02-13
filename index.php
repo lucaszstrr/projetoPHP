@@ -3,6 +3,8 @@
     //Função de login
     function login(){
 
+        global $usuario;
+
         echo "Usuário: " .PHP_EOL;
         $usuario = readline();
         echo "Senha: " .PHP_EOL;
@@ -125,6 +127,8 @@
                 if($escolha === 1){
                     $usuarioLogado = login();
                 }elseif($escolha === 2){
+                    file_put_contents('log.txt', "$mensagem", FILE_APPEND);
+                    logAlteracoes("$usuario deslogou do sistema \n");
                     echo "Você escolheu sair!" .PHP_EOL;
                     break;
                 }else{
