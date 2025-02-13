@@ -1,5 +1,7 @@
 <?php 
 
+    date_default_timezone_set("America/Sao_Paulo");
+
     //Função de login
     function login(){
 
@@ -48,6 +50,8 @@
     //Função de venda
     function venda($mensagem){
 
+        global $mensagem;
+
         $produto = readline("Qual o produto ? ".PHP_EOL);
         $valor = readline("Qual o valor ? R$" .PHP_EOL);
         //Colocando no log 
@@ -83,6 +87,7 @@
 
     //CÓDIGO ---------------------------------------------------------------------------------------------------
 
+    $mensagemT = true;
     $usuarioLogado = false;
 
     while(true){
@@ -112,7 +117,7 @@
             $escolha = (int)readline();
 
             if($escolha === 1){
-                $usuarioLogado = venda($mensagem);
+                $usuarioLogado = venda($mensagemT);
             }elseif($escolha === 2){
                 $usuarioLogado = cadastro();
             }elseif($escolha === 3){
