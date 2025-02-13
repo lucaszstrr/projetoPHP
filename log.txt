@@ -1,0 +1,8 @@
+[13/02/2025 11:21:08] - O usuário Lucas entrou 
+[13/02/2025 11:21:19] - Lucas deslogou do sistema 
+[13/02/2025 11:30:28] -  deslogou do sistema 
+[13/02/2025 11:30:36] - O usuário Lucas entrou 
+[13/02/2025 11:30:41] - Lucas deslogou do sistema 
+[13/02/2025 11:31:51] - O usuário Lucas entrou 
+[13/02/2025 11:31:55] - Lucas deslogou do sistema 
+[13/02/2025 11:32:05] - Lucas deslogou do sistema 
