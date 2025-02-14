@@ -1,8 +1,12 @@
-[13/02/2025 11:21:08] - O usuário Lucas entrou 
-[13/02/2025 11:21:19] - Lucas deslogou do sistema 
-[13/02/2025 11:30:28] -  deslogou do sistema 
-[13/02/2025 11:30:36] - O usuário Lucas entrou 
-[13/02/2025 11:30:41] - Lucas deslogou do sistema 
-[13/02/2025 11:31:51] - O usuário Lucas entrou 
-[13/02/2025 11:31:55] - Lucas deslogou do sistema 
-[13/02/2025 11:32:05] - Lucas deslogou do sistema 
+[14/02/2025 10:46:41] - O usuário Lucas entrou 
+[14/02/2025 10:47:13] - O usuário teste foi cadastrado 
+[14/02/2025 10:47:20] - Lucas deslogou do sistema 
+[14/02/2025 10:49:44] - O usuário Lucas entrou 
+[14/02/2025 10:49:56] - O usuário teste2 foi cadastrado 
+[14/02/2025 10:49:59] - Lucas deslogou do sistema 
+[14/02/2025 10:52:03] - O usuário Lucas entrou 
+[14/02/2025 10:52:10] - O usuário teste3 foi cadastrado 
+[14/02/2025 10:52:23] - Lucas deslogou do sistema 
+[14/02/2025 10:53:24] - O usuário Lucas entrou 
+[14/02/2025 10:53:29] - O usuário testando foi cadastrado 
+[14/02/2025 10:53:31] - Lucas deslogou do sistema 
