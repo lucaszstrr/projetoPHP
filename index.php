@@ -6,10 +6,7 @@
     //Função de login
     function login(){
 
-        
         global $usuario;
-
-       
 
         echo "Usuário: " .PHP_EOL;
         $usuario = readline();
@@ -20,44 +17,74 @@
             logAlteracoes("O usuário $usuario entrou \n");
 
             return $usuario;
-        }
-
-        
-    }
-
-
-/*      if(strpos(file_get_contents("usuarios.txt"), $_POST["admin:admin"]) === true){
-            echo "Usuário logado" .PHP_EOL;
-            return $usuario;
         }else{
-            echo "Usuário não encontrado" .PHP_EOL;
-            return false;
+
+            echo "Usuário não encontrado, tente novamente" .PHP_EOL;
+            login();
+
         }
-*/  
 
+    }
     
-
     //Função de cadastro
     function cadastro(){
 
+        global $novoUsuario;
+        global $novaSenha;
+        global $logins;   
+
         $novoUsuario = readline("Digite o novo usuário: ");
         $novaSenha = readline("Digite a nova senha: ");
-        //Essa função abaixo é usada pra colocar strings em um arquivo
-        //file_put_contents(nome do arquivo; o que será escrito no arquivo, FILE_APPEND)
-        //o FILE_APPEND é para não sobrescrever o arquivo, ele vai escrever no arquivo já existente
+        $logins = ['login' => $novoUsuario, 'senha' => $novaSenha];
+        //Verifiquei se o array está funcionando com o comando abaixo
+        //print_r($logins);
+        
         logAlteracoes("O usuário $novoUsuario foi cadastrado \n");
         echo "Usuário cadastrado" .PHP_EOL;
 
     }
 
-    function login2(){
+    function login2($logins){
 
+        global $usuario;
         global $novoUsuario;
         global $novaSenha;
-        global $usuario;
+        global $chaveExiste;
+        global $logins;
 
-        $logins = ['login' => $novoUsuario, 'senha' => $novaSenha];
+        echo "Usuário: " .PHP_EOL;
+        $novoUsuario = readline();
+        echo "Senha: " .PHP_EOL;
+        $novaSenha = readline();
 
+        print_r($logins);
+
+        $chaveExiste = array_key_exists($novoUsuario, $logins);
+
+        if($chaveExiste === true){
+
+            if($novoUsuario && $novaSenha){
+
+                echo "Usuário logado" .PHP_EOL;
+                logAlteracoes("O usuário $novoUsuario entrou \n");
+                return $usuario;
+
+            }else{
+
+                echo "Usuário não encontrado" .PHP_EOL;
+                login2($logins);
+
+            }
+
+            //echo "A chave existe e tem o valor $logins[login]" .PHP_EOL;
+            
+        }else{
+
+            echo "Seu login e/ou senha estão incorretos" .PHP_EOL;
+            login2($logins);
+
+        }
+/*        
         if($logins['login'] === $logins['senha']){
             echo "Usuário logado" .PHP_EOL;
             return $usuario;
@@ -68,7 +95,7 @@
 
         }
 
-
+*/
     }
 
     //Função de venda
@@ -78,7 +105,10 @@
 
         $produto = readline("Qual o produto ? ".PHP_EOL);
         $valor = readline("Qual o valor ? R$" .PHP_EOL);
-        //Colocando no log 
+        //Colocando no log
+        //Essa função abaixo é usada pra colocar strings em um arquivo
+        //file_put_contents(nome do arquivo; o que será escrito no arquivo, FILE_APPEND)
+        //o FILE_APPEND é para não sobrescrever o arquivo, ele vai escrever no arquivo já existente 
         file_put_contents('log.txt', "$mensagem", FILE_APPEND);
         logAlteracoes("$produto foi vendido no valor de R$$valor \n");
         return $valor;
@@ -111,6 +141,7 @@
 
     //CÓDIGO ---------------------------------------------------------------------------------------------------
 
+    $chaveExiste = true;
     $mensagemT = true;
     $usuarioLogado = false;
 
@@ -147,24 +178,25 @@
             }elseif($escolha === 3){
                 $usuarioLogado = verLog();
             }elseif($escolha === 4){
-                echo "Saindo......." .PHP_EOL;
-                echo "O que você quer fazer agora ?" .PHP_EOL;
-                echo "[1] - Logar [2] - Sair" .PHP_EOL;
-                echo "Escolha uma opção: " .PHP_EOL;
-                $escolha = (int)readline();
 
                 global $mensagem;
 
                 file_put_contents('log.txt', "$mensagem", FILE_APPEND);
                 logAlteracoes("$usuario deslogou do sistema \n");
 
+                echo "Saindo......." .PHP_EOL;
+                echo "O que você quer fazer agora ?" .PHP_EOL;
+                echo "[1] - Logar [2] - Sair" .PHP_EOL;
+                echo "Escolha uma opção: " .PHP_EOL;
+                $escolha = (int)readline();
+
                 if($escolha === 1){
-                    $usuarioLogado = login();
+                    $usuarioLogado = login2($logins);
                 }elseif($escolha === 2){
                     echo "Você escolheu sair!" .PHP_EOL;
                     break;
                 }else{
-                echo "Você precisa escolher entre 1 ou 2" .PHP_EOL;                
+                    echo "Você precisa escolher entre 1 ou 2" .PHP_EOL;                
                 }
             }else{
                 echo "Você precisa escolher entre 1 a 4" .PHP_EOL;
